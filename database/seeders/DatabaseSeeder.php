@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Proyecto;
+use App\Models\Sprint;
+use App\Models\Tarea;
+use App\Models\Comentario;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        Proyecto::factory(10)->create()->each(function ($proyecto) {
+            // Cada proyecto tiene sprints asociados
+            Sprint::factory(5)->create(['proyecto_id' => $proyecto->id])->each(function ($sprint) {
+                // Cada sprint puede tener varias tareas
+                Tarea::factory(7)->create(['sprint_id' => $sprint->id])->each(function ($tarea) {
+                    // Cada tarea puede tener varios comentarios
+                    Comentario::factory(3)->create(['tarea_id' => $tarea->id]);
+                });
+            });
+        }); 
     }
 }
