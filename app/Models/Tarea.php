@@ -9,14 +9,16 @@ class Tarea extends Model
 {
     use HasFactory;
     protected $fillable = ['sprint_id', 'nombre', 'descripcion', 'prioridad', 'estado', 'fecha_inicio', 'fecha_fin'];
-
-    // Pertenece a un Sprint
     public function sprint()
-    {
-        return $this->belongsTo(Sprint::class);
-    }
+{
+    return $this->belongsTo(Sprint::class);
+}
 
-    // Tiene muchos Comentarios
+public function proyecto()
+{
+    return $this->belongsTo(Proyecto::class);
+}
+
     public function comentarios()
     {
         return $this->hasMany(Comentario::class);

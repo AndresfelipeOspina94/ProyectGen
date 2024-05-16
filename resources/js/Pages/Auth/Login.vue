@@ -70,7 +70,7 @@ const submit = () => {
 							</Link>
 							
 							<PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-								Log in
+								Iniciar
 							</PrimaryButton>
 						</div>
 					</form>
