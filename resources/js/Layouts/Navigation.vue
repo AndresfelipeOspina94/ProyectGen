@@ -42,6 +42,29 @@
             Proyectos
           </NavLink>
         </li>
+        <!-- Sprints -->
+        <li class="relative px-6 py-3">
+          <NavLink :href="route('sprints.index')" :active="route().current('sprints.index')">
+            <template #icon>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672Zm-7.518-.267A8.25 8.25 0 1 1 20.25 10.5M8.288 14.212A5.25 5.25 0 1 1 17.25 10.5" />
+              </svg>
+            </template>
+            Sprints
+          </NavLink>
+        </li>
+
+        <!-- Tareas -->
+        <li class="relative px-6 py-3">
+          <NavLink :href="route('tareas.index')" :active="route().current('tareas.index')">
+            <template #icon>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672Zm-7.518-.267A8.25 8.25 0 1 1 20.25 10.5M8.288 14.212A5.25 5.25 0 1 1 17.25 10.5" />
+              </svg>
+            </template>
+            Tareas
+          </NavLink>
+        </li>
 
         <li class="relative px-6 py-3">
           <button @click="showingTareasMenu = !showingTareasMenu"

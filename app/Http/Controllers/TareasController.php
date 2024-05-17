@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tarea;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TareasController extends Controller
 {
@@ -12,7 +13,11 @@ class TareasController extends Controller
      */
     public function index()
     {
-        //
+        $tareas = Tarea::with('sprint.proyecto')->get();
+
+        return Inertia::render('Tareas/Index', [
+            'tareas' => $tareas
+        ]);
     }
 
     /**

@@ -70,6 +70,6 @@ class ProyectosController extends Controller
    
     public function destroy(Proyecto $proyecto)
     {
-        //
+        
     }
 }

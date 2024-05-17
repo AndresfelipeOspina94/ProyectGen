@@ -2,5 +2,5 @@
 </script>
 
 <template>
-    Create Sprints
+    Crear Sprints
 </template>

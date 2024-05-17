@@ -4,62 +4,70 @@ namespace App\Http\Controllers;
 
 use App\Models\Sprint;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class SprintsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $sprints = Sprint::with('proyecto')->get();
+
+        return Inertia::render('Sprints/Index', [
+            'sprints' => $sprints
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return Inertia::render('Sprints/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'proyecto_id' => 'required|exists:proyectos,id',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'required|date',
+        ]);
+
+        Sprint::create($request->all());
+
+        return redirect()->route('sprints.index')->with('success', 'Sprint creado exitosamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Sprint $sprint)
     {
-        //
+        return Inertia::render('Sprints/Show', [
+            'sprint' => $sprint
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Sprint $sprint)
     {
-        //
+        return Inertia::render('Sprints/Edit', [
+            'sprint' => $sprint
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Sprint $sprint)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'proyecto_id' => 'required|exists:proyectos,id',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'required|date',
+        ]);
+
+        $sprint->update($request->all());
+
+        return redirect()->route('sprints.index')->with('success', 'Sprint actualizado exitosamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Sprint $sprint)
     {
-        //
+        $sprint->delete();
+
+        return redirect()->route('sprints.index')->with('success', 'Sprint eliminado exitosamente.');
     }
 }

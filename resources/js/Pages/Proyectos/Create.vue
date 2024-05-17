@@ -2,5 +2,5 @@
 </script>
 
 <template>
-    Create Proyectos
+    Crear Proyectos
 </template>
